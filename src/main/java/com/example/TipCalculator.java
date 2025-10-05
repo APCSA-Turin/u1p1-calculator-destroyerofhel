@@ -50,12 +50,22 @@ public class TipCalculator {
         String result = "";
     
         //  COPY AND PASTE YOUR PROGRAM FROM calculateTip() HERE 
-        
-        // the while loop condition is checked,
-        // and if TRUE, runs the code inside.
-        // when the code inside is done running, the condition is rechecked,
-        // and the loop repeats as long as the condition remains TRUE.
-        // when the condition becomes FALSE, it stops
+        double tip = (cost*(percent/100f));
+        double cost_with_tip = (cost + tip);
+        double costPerPerson = (cost/people);
+        double tip_per_person = (tip/people);
+        double cost_per_person_with_tip = (cost_with_tip/people);
+
+        result = "-------------------------------\n" +
+                       "Total bill before tip: $" + roundDollars(cost) + "\n" +
+                       "Total percentage: " + percent + "%\n" +
+                       "Total tip: $" + roundDollars(tip) + "\n" +
+                       "Total Bill with tip: $" + roundDollars(cost_with_tip) + "\n" +
+                       "Per person cost before tip: $" + roundDollars(costPerPerson) + "\n" +
+                       "Tip per person: $" + roundDollars(tip_per_person) + "\n" +
+                       "Total cost per person: $" + roundDollars(cost_per_person_with_tip) + "\n" +
+                       "-------------------------------\nItems ordered:\n";
+
         Scanner scanner = new Scanner(System.in);
 
         String response = "";
@@ -64,6 +74,12 @@ public class TipCalculator {
             response = scanner.nextLine();
             if(!response.equals("-1")) { result = result + response + "\n";}
         }
+
+        if(result.length() > 0 && result.substring(result.length()-1,result.length()) == "\n") {
+            result = result.substring(1, result.length()-2);
+        }
+
+        result += "-------------------------------\n";
 
         scanner.close();
 
@@ -79,6 +95,7 @@ public class TipCalculator {
         double cost = 52.27;            
         //System.out.println(calculateTip(people,percent,cost));
         //System.out.println(extraCredit(people, percent, cost));
+        //extraCredit(people,percent,cost);
     }
 }
         
